@@ -1,12 +1,7 @@
 fastapi
 uvicorn
-litellm==1.76.0
+litellm==1.82.6
 python-dotenv
 pymupdf
-faiss-cpu
-sentence-transformers
-numpy
-edge-tts
 python-multipart
 motor
-dnspython
