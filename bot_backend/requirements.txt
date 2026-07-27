@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+litellm==1.76.0
+python-dotenv
+pymupdf
+faiss-cpu
+sentence-transformers
+numpy
+edge-tts
+python-multipart
+motor
+dnspython
