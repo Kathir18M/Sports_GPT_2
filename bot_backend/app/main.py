@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app.routes.chatbot import router as chatbot_router
-from app.routes.voice import router as voice_router
+
 from app.rag.startup import rag_pipeline
 from app.db.mongo_db import connect_to_mongo, close_mongo_connection, db_instance, get_vector_collection
 

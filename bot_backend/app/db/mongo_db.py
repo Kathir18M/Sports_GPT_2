@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from app.core.config import settings
+import ssl
 import logging
 
 # Setup Logger (Critical for Cloud Debugging)
@@ -28,8 +29,11 @@ def get_vector_collection():
 async def connect_to_mongo():
     try:
         logger.info("⏳ Connecting to MongoDB...")
-        # Use TLS option that relaxes certificate verification for local development
-        db_instance.client = AsyncIOMotorClient(settings.MONGO_URL, tlsAllowInvalidCertificates=True)
+        # Use a custom SSL context to bypass certificate verification issues
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        db_instance.client = AsyncIOMotorClient(settings.MONGO_URL, tls=True, tlsAllowInvalidCertificates=True)
         
         # THE PING TEST (Crucial for Cloud)
         await db_instance.client.admin.command('ping')
